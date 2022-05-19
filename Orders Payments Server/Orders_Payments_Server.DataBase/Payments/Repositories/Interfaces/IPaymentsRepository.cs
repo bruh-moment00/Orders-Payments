@@ -1,0 +1,15 @@
+﻿using Orders_Payments_Server.DataBase.Payments.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Orders_Payments_Server.DataBase.Payments.Repositories.Interfaces
+{
+    interface IPaymentsRepository
+    {
+        public List<PaymentDB> GetPayments();
+        public void SaveNewPayments(IEnumerable<PaymentDB> paymentDBs);
+    }
+}

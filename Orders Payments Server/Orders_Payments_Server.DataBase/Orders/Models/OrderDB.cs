@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Orders_Payments_Server.DataBase.Funds.Models
+namespace Orders_Payments_Server.DataBase.Orders.Models
 {
-    public partial class FundDB
+    public partial class OrderDB
     {
-        public FundDB()
+        public OrderDB()
         {
             Payments = new HashSet<PaymentDB>();
         }
@@ -16,7 +16,7 @@ namespace Orders_Payments_Server.DataBase.Funds.Models
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public double Sum { get; set; }
-        public double Remain { get; set; }
+        public double PaidSum { get; set; }
 
         public virtual ICollection<PaymentDB> Payments { get; set; }
     }

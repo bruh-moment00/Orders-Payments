@@ -44,7 +44,7 @@ namespace Orders_Payments_Server.DataBase.Contexts
                 entity.Property(e => e.Sum).HasColumnName("sum");
             });
 
-            modelBuilder.Entity<Order>(entity =>
+            modelBuilder.Entity<OrderDB>(entity =>
             {
                 entity.ToTable("ORDERS");
 
@@ -60,7 +60,7 @@ namespace Orders_Payments_Server.DataBase.Contexts
                 entity.Property(e => e.Sum).HasColumnName("sum");
             });
 
-            modelBuilder.Entity<Payment>(entity =>
+            modelBuilder.Entity<PaymentDB>(entity =>
             {
                 entity.ToTable("PAYMENTS");
 

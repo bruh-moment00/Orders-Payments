@@ -21,7 +21,7 @@ namespace Orders_Payments_Server.DataBase.Context
         }
 
         public virtual DbSet<FundDB> Funds { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<OrderDB> Orders { get; set; }
+        public virtual DbSet<PaymentDB> Payments { get; set; }
     }
 }
