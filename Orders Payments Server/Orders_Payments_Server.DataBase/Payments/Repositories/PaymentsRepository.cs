@@ -1,4 +1,5 @@
-﻿using Orders_Payments_Server.DataBase.Payments.Models;
+﻿using Orders_Payments_Server.DataBase.Context;
+using Orders_Payments_Server.DataBase.Payments.Models;
 using Orders_Payments_Server.DataBase.Payments.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,20 @@ namespace Orders_Payments_Server.DataBase.Payments.Repositories
 {
     class PaymentsRepository : IPaymentsRepository
     {
+        private readonly OrdersPaymentsDBContext _context;
+        public PaymentsRepository(OrdersPaymentsDBContext context)
+        {
+            _context = context;
+        }
         public List<PaymentDB> GetPaymentsFromDB()
         {
-            throw new NotImplementedException();
+            return _context.Payments.ToList();
         }
 
         public void SaveNewPayments(IEnumerable<PaymentDB> paymentDBs)
         {
-            throw new NotImplementedException();
+            _context.Payments.AddRange(paymentDBs);
+            _context.SaveChanges();
         }
     }
 }

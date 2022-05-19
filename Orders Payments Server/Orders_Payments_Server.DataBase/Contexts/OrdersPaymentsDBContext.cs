@@ -1,7 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Orders_Payments_Server.DataBase.Models;
+using Orders_Payments_Server.DataBase.Funds.Models;
+using Orders_Payments_Server.DataBase.Orders.Models;
+using Orders_Payments_Server.DataBase.Payments.Models;
 
 #nullable disable
 

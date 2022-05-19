@@ -9,8 +9,8 @@ namespace Orders_Payments_Server.DataBase.Orders.Repositories.Interfaces
 {
     public interface IOrdersRepository
     {
-        public OrderDB GetOrderByIDFromDB();
         public List<OrderDB> GetOrdersFromDB();
+        public OrderDB GetOrderByIDFromDB(int id);
         public void SaveNewOrders(IEnumerable<OrderDB> orderDBs);
     }
 }

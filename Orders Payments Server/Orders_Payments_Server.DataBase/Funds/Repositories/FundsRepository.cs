@@ -1,4 +1,5 @@
-﻿using Orders_Payments_Server.DataBase.Funds.Models;
+﻿using Orders_Payments_Server.DataBase.Context;
+using Orders_Payments_Server.DataBase.Funds.Models;
 using Orders_Payments_Server.DataBase.Funds.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,24 +11,26 @@ namespace Orders_Payments_Server.DataBase.Funds.Repositories
 {
     public class FundsRepository : IFundsRepository
     {
-        public List<FundDB> GetFundDBs()
+        private readonly OrdersPaymentsDBContext _context;
+        public FundsRepository(OrdersPaymentsDBContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
         public List<FundDB> GetFundsFromDB()
         {
-            throw new NotImplementedException();
+            return _context.Funds.ToList();
         }
 
-        public FundDB GetFundByIDFromDB()
+        public FundDB GetFundByIDFromDB(int id)
         {
-            throw new NotImplementedException();
+            return _context.Funds.Find(id);
         }
 
         public void SaveNewFunds(IEnumerable<FundDB> fundDBs)
         {
-            throw new NotImplementedException();
+            _context.Funds.AddRange(fundDBs);
+            _context.SaveChanges();
         }
     }
 }
