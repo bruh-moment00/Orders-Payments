@@ -10,12 +10,12 @@ namespace Orders_Payments_Server.DataBase.Orders.Repositories
 {
     public class OrdersRepository : IOrdersRepository
     {
-        public OrderDB GetOrderByID()
+        public OrderDB GetOrderByIDFromDB()
         {
             throw new NotImplementedException();
         }
 
-        public List<OrderDB> GetOrders()
+        public List<OrderDB> GetOrdersFromDB()
         {
             throw new NotImplementedException();
         }

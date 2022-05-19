@@ -10,7 +10,7 @@ namespace Orders_Payments_Server.DataBase.Payments.Repositories
 {
     class PaymentsRepository : IPaymentsRepository
     {
-        public List<PaymentDB> GetPayments()
+        public List<PaymentDB> GetPaymentsFromDB()
         {
             throw new NotImplementedException();
         }

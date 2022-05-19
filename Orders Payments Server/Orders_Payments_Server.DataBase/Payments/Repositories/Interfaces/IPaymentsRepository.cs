@@ -9,7 +9,7 @@ namespace Orders_Payments_Server.DataBase.Payments.Repositories.Interfaces
 {
     interface IPaymentsRepository
     {
-        public List<PaymentDB> GetPayments();
+        public List<PaymentDB> GetPaymentsFromDB();
         public void SaveNewPayments(IEnumerable<PaymentDB> paymentDBs);
     }
 }

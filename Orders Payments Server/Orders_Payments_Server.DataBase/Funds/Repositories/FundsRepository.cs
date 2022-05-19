@@ -15,12 +15,12 @@ namespace Orders_Payments_Server.DataBase.Funds.Repositories
             throw new NotImplementedException();
         }
 
-        public List<FundDB> GetFunds()
+        public List<FundDB> GetFundsFromDB()
         {
             throw new NotImplementedException();
         }
 
-        public FundDB GetFundByID()
+        public FundDB GetFundByIDFromDB()
         {
             throw new NotImplementedException();
         }

@@ -9,8 +9,8 @@ namespace Orders_Payments_Server.DataBase.Funds.Repositories.Interfaces
 {
     public interface IFundsRepository
     {
-        public FundDB GetFundByID();
-        public List<FundDB> GetFunds();
+        public FundDB GetFundByIDFromDB();
+        public List<FundDB> GetFundsFromDB();
         public void SaveNewFunds(IEnumerable<FundDB> fundDBs);
     }
 }
