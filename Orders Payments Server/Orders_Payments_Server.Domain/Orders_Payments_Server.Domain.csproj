@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Funds\Converters\" />
-    <Folder Include="Orders\Converters\" />
-    <Folder Include="Payments\Converters\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Result" Version="1.1.1" />
   </ItemGroup>
 
