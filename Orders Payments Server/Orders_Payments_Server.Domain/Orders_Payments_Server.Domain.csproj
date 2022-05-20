@@ -4,4 +4,18 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Funds\Converters\" />
+    <Folder Include="Orders\Converters\" />
+    <Folder Include="Payments\Converters\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Result" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Orders_Payments_Server.DataBase\Orders_Payments_Server.DataBase.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -8,10 +8,6 @@ namespace Orders_Payments_Server.DataBase.Orders.Models
 {
     public partial class OrderDB
     {
-        public OrderDB()
-        {
-            Payments = new HashSet<PaymentDB>();
-        }
 
         public int Id { get; set; }
         public DateTime Date { get; set; }
