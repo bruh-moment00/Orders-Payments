@@ -53,13 +53,13 @@ namespace Orders_Payments_Server.API
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterType<MSSQLServerDBContext>().As<OrdersPaymentsDBContext>().WithParameter("connectionString", Configuration["ConnectionStrings:OrdersPaymentsDB"]).SingleInstance();
-            builder.RegisterType<FundsRepository>().As<IFundsRepository>().SingleInstance();
-            builder.RegisterType<OrdersRepository>().As<IOrdersRepository>().SingleInstance();
-            builder.RegisterType<PaymentsRepository>().As<IPaymentsRepository>().SingleInstance();
-            builder.RegisterType<FundsService>().As<IFundsService>().SingleInstance();
-            builder.RegisterType<OrdersService>().As<IOrdersService>().SingleInstance();
-            builder.RegisterType<PaymentsService>().As<IPaymentsService>().SingleInstance();
+            builder.RegisterType<MSSQLServerDBContext>().As<OrdersPaymentsDBContext>().WithParameter("connectionString", Configuration["ConnectionStrings:OrdersPaymentsDB"]).InstancePerLifetimeScope();
+            builder.RegisterType<FundsRepository>().As<IFundsRepository>();
+            builder.RegisterType<OrdersRepository>().As<IOrdersRepository>();
+            builder.RegisterType<PaymentsRepository>().As<IPaymentsRepository>();
+            builder.RegisterType<FundsService>().As<IFundsService>();
+            builder.RegisterType<OrdersService>().As<IOrdersService>();
+            builder.RegisterType<PaymentsService>().As<IPaymentsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
