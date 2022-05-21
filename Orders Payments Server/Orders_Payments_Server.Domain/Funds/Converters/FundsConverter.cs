@@ -10,9 +10,9 @@ namespace Orders_Payments_Server.Domain.Funds.Converters
 {
     public static class FundsConverter
     {
-        public static Fund ToFund(this FundDB fundDB)
+        public static FundResponse ToFundResponse(this FundDB fundDB)
         {
-            return new Fund()
+            return new FundResponse()
             {
                 Id = fundDB.Id,
                 Date = fundDB.Date,
@@ -21,21 +21,21 @@ namespace Orders_Payments_Server.Domain.Funds.Converters
             };
         }
 
-        public static IEnumerable<Fund> ToFunds(this IEnumerable<FundDB> fundDBs)
+        public static IEnumerable<FundResponse> ToFundMultipleResponse(this IEnumerable<FundDB> fundDBs)
         {
-            return fundDBs.Select(ToFund);
+            return fundDBs.Select(ToFundResponse);
         }
 
-        public static FundDB ToFundDB(this Fund fund)
+        public static FundDB ToFundDB(this QueryFund queryFund)
         {
             return new FundDB()
             {
-                Date = fund.Date,
-                Sum = fund.Sum,
+                Date = queryFund.Date,
+                Sum = queryFund.Sum,
             };
         }
 
-        public static IEnumerable<FundDB> ToFundDBs(this IEnumerable<Fund> funds)
+        public static IEnumerable<FundDB> ToFundDBs(this IEnumerable<QueryFund> funds)
         {
             return funds.Select(ToFundDB);
         }

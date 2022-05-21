@@ -1,5 +1,7 @@
 ﻿using Jane;
 using Orders_Payments_Server.DataBase.Orders.Models;
+using Orders_Payments_Server.DataBase.Orders.Repositories.Interfaces;
+using Orders_Payments_Server.Domain.Orders.Converters;
 using Orders_Payments_Server.Domain.Orders.Models;
 using Orders_Payments_Server.Domain.Orders.Services.Interfaces;
 using System;
@@ -12,18 +14,33 @@ namespace Orders_Payments_Server.Domain.Orders.Services
 {
     public class OrdersService : IOrdersService
     {
-        public IResult<IEnumerable<Order>> GetManyOrders()
+        private readonly IOrdersRepository _ordersRepository;
+        public OrdersService(IOrdersRepository ordersRepository)
         {
-            throw new NotImplementedException();
+            _ordersRepository = ordersRepository;
         }
-
-        public IResult<Order> GetSingleOrder()
+        public IResult<IEnumerable<OrderResponse>> GetManyOrders()
         {
-            throw new NotImplementedException();
+            IEnumerable<OrderResponse> orders = _ordersRepository.GetOrdersFromDB().ToOrderMultipleResponse();
+            return Result.Success(orders);
         }
-        public IResult AddNewOrders(IEnumerable<Order> orders)
+        IResult<OrderResponse> IOrdersService.GetSingleOrder(int id)
         {
-            throw new NotImplementedException();
+            OrderResponse fund = _ordersRepository.GetOrderByIDFromDB(id).ToOrderResponse();
+            return Result.Success(fund);
+        }
+        public IResult AddNewOrders(IEnumerable<QueryOrder> queryOrders)
+        {
+            IEnumerable<OrderDB> newFundDBs = queryOrders.ToOrderDBs();
+            try
+            {
+                _ordersRepository.SaveNewOrders(newFundDBs);
+                return Result.Success();
+            }
+            catch (Exception ex)
+            {
+                return Result.Failure(ex);
+            }
         }
     }
 }

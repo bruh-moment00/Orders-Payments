@@ -11,6 +11,6 @@ namespace Orders_Payments_Server.Domain.Payments.Services.Interfaces
     public interface IPaymentsService
     {
         public IResult<IEnumerable<Payment>> GetManyPayments();
-        public IResult AddNewPayment();
+        public IResult AddNewPayment(QueryPayment queryPayment);
     }
 }

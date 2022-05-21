@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Orders_Payments_Server.DataBase.Payments.Repositories.Interfaces
 {
-    interface IPaymentsRepository
+    public interface IPaymentsRepository
     {
         public List<PaymentDB> GetPaymentsFromDB();
-        public void SaveNewPayments(IEnumerable<PaymentDB> paymentDBs);
+        public void SaveNewPayments(PaymentDB paymentDB);
     }
 }

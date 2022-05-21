@@ -10,8 +10,8 @@ namespace Orders_Payments_Server.Domain.Orders.Services.Interfaces
 {
     public interface IOrdersService
     {
-        public IResult<IEnumerable<Order>> GetManyOrders();
-        public IResult<Order> GetSingleOrder();
-        public IResult AddNewOrders(IEnumerable<Order> orders);
+        public IResult<IEnumerable<OrderResponse>> GetManyOrders();
+        public IResult<OrderResponse> GetSingleOrder(int id);
+        public IResult AddNewOrders(IEnumerable<QueryOrder> queryOrders);
     }
 }

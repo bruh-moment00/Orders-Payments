@@ -1,4 +1,7 @@
 ﻿using Jane;
+using Orders_Payments_Server.DataBase.Funds.Models;
+using Orders_Payments_Server.DataBase.Funds.Repositories.Interfaces;
+using Orders_Payments_Server.Domain.Funds.Converters;
 using Orders_Payments_Server.Domain.Funds.Models;
 using Orders_Payments_Server.Domain.Funds.Services.Interfaces;
 using System;
@@ -11,17 +14,33 @@ namespace Orders_Payments_Server.Domain.Funds.Services
 {
     class FundsService : IFundsService
     {
-        public IResult<IEnumerable<Fund>> GetManyFunds()
+        private readonly IFundsRepository _fundsRepository;
+        public FundsService(IFundsRepository fundsRepository)
         {
-            throw new NotImplementedException();
+            _fundsRepository = fundsRepository;
         }
-        IResult<Fund> IFundsService.GetSingleFund()
+        public IResult<IEnumerable<FundResponse>> GetManyFunds()
         {
-            throw new NotImplementedException();
+            IEnumerable<FundResponse> funds = _fundsRepository.GetFundsFromDB().ToFundMultipleResponse();
+            return Result.Success(funds);
         }
-        public IResult AddNewFunds(IEnumerable<Fund> funds)
+        IResult<FundResponse> IFundsService.GetSingleFund(int id)
         {
-            throw new NotImplementedException();
+            FundResponse fund = _fundsRepository.GetFundByIDFromDB(id).ToFundResponse();
+            return Result.Success(fund);
+        }
+        public IResult AddNewFunds(IEnumerable<QueryFund> queryFunds)
+        {
+            IEnumerable<FundDB> newFundDBs = queryFunds.ToFundDBs();
+            try
+            {
+                _fundsRepository.SaveNewFunds(newFundDBs);
+                return Result.Success();
+            } 
+            catch(Exception ex)
+            {
+                return Result.Failure(ex);
+            }
         }
     }
 }

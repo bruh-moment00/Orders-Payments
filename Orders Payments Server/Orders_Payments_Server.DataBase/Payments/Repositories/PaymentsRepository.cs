@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Orders_Payments_Server.DataBase.Payments.Repositories
 {
-    class PaymentsRepository : IPaymentsRepository
+    public class PaymentsRepository : IPaymentsRepository
     {
         private readonly OrdersPaymentsDBContext _context;
         public PaymentsRepository(OrdersPaymentsDBContext context)
@@ -21,9 +21,9 @@ namespace Orders_Payments_Server.DataBase.Payments.Repositories
             return _context.Payments.ToList();
         }
 
-        public void SaveNewPayments(IEnumerable<PaymentDB> paymentDBs)
+        public void SaveNewPayments(PaymentDB paymentDB)
         {
-            _context.Payments.AddRange(paymentDBs);
+            _context.Payments.Add(paymentDB);
             _context.SaveChanges();
         }
     }

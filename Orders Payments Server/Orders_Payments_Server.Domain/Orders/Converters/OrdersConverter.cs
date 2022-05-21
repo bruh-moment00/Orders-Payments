@@ -10,9 +10,9 @@ namespace Orders_Payments_Server.Domain.Orders.Converters
 {
     public static class OrdersConverter
     {
-        public static Order ToOrder(this OrderDB orderDB)
+        public static OrderResponse ToOrderResponse(this OrderDB orderDB)
         {
-            return new Order()
+            return new OrderResponse()
             {
                 Id = orderDB.Id,
                 Date = orderDB.Date,
@@ -21,23 +21,23 @@ namespace Orders_Payments_Server.Domain.Orders.Converters
             };
         }
 
-        public static IEnumerable<Order> ToOrders(this IEnumerable<OrderDB> orderDBs)
+        public static IEnumerable<OrderResponse> ToOrderMultipleResponse(this IEnumerable<OrderDB> orderDBs)
         {
-            return orderDBs.Select(ToOrder);
+            return orderDBs.Select(ToOrderResponse);
         }
 
-        public static OrderDB ToOrderDB(this Order order)
+        public static OrderDB ToOrderDB(this QueryOrder queryOrder)
         {
             return new OrderDB()
             {
-                Date = order.Date,
-                Sum = order.Sum,
+                Date = queryOrder.Date,
+                Sum = queryOrder.Sum,
             };
         }
 
-        public static IEnumerable<OrderDB> ToOrderDBs(this IEnumerable<Order> orders)
+        public static IEnumerable<OrderDB> ToOrderDBs(this IEnumerable<QueryOrder> queryOrders)
         {
-            return orders.Select(ToOrderDB);
+            return queryOrders.Select(ToOrderDB);
         }
     }
 }

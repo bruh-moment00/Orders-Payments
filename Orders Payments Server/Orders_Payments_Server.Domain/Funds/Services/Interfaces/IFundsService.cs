@@ -10,8 +10,8 @@ namespace Orders_Payments_Server.Domain.Funds.Services.Interfaces
 {
     public interface IFundsService
     {
-        public IResult<IEnumerable<Fund>> GetManyFunds();
-        public IResult<Fund> GetSingleFund();
-        public IResult AddNewFunds(IEnumerable<Fund> funds);
+        public IResult<IEnumerable<FundResponse>> GetManyFunds();
+        public IResult<FundResponse> GetSingleFund(int id);
+        public IResult AddNewFunds(IEnumerable<QueryFund> funds);
     }
 }

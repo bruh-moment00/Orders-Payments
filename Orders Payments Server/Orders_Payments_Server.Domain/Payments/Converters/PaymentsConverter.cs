@@ -26,19 +26,19 @@ namespace Orders_Payments_Server.Domain.Payments.Converters
             return paymentDBs.Select(ToPayment);
         }
 
-        public static PaymentDB ToPaymentDB(this Payment payment)
+        public static PaymentDB ToPaymentDB(this QueryPayment queryPayment)
         {
             return new PaymentDB()
             {
-                OrderId = payment.OrderId,
-                FundId = payment.FundId,
-                PaymentSum = payment.PaymentSum
+                OrderId = queryPayment.OrderId,
+                FundId = queryPayment.FundId,
+                PaymentSum = queryPayment.PaymentSum
             };
         }
 
-        public static IEnumerable<PaymentDB> ToPaymentDBs(this IEnumerable<Payment> payments)
+        public static IEnumerable<PaymentDB> ToPaymentDBs(this IEnumerable<QueryPayment> queryPayments)
         {
-            return payments.Select(ToPaymentDB);
+            return queryPayments.Select(ToPaymentDB);
         }
     }
 }

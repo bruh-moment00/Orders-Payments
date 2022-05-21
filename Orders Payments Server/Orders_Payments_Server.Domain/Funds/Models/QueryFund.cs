@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Orders_Payments_Server.Domain.Orders.Models
+namespace Orders_Payments_Server.Domain.Funds.Models
 {
-    public class Order
+    public class QueryFund
     {
-        public int? Id { get; set; }
         public DateTime Date { get; set; }
         public double Sum { get; set; }
-        public double? PaidSum { get; set; }
     }
 }
