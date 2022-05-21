@@ -6,7 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.3.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
+    <PackageReference Include="Result" Version="1.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Orders_Payments_Server.DataBase\Orders_Payments_Server.DataBase.csproj" />
+    <ProjectReference Include="..\Orders_Payments_Server.Domain\Orders_Payments_Server.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders_Payments_Server.API"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders_Payments_Server.DataBase", "Orders_Payments_Server.DataBase\Orders_Payments_Server.DataBase.csproj", "{D4E4055F-2943-4176-9FB1-862165506053}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders_Payments_Server.IoC", "Orders_Payments_Server.IoC\Orders_Payments_Server.IoC.csproj", "{F69797CE-7660-48A5-9F76-2C31ABEA404E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders_Payments_Server.Domain", "Orders_Payments_Server.Domain\Orders_Payments_Server.Domain.csproj", "{72FB6B93-E21D-44C0-99FF-9293214A19C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders_Payments_Server.Domain", "Orders_Payments_Server.Domain\Orders_Payments_Server.Domain.csproj", "{72FB6B93-E21D-44C0-99FF-9293214A19C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{D4E4055F-2943-4176-9FB1-862165506053}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4E4055F-2943-4176-9FB1-862165506053}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4E4055F-2943-4176-9FB1-862165506053}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F69797CE-7660-48A5-9F76-2C31ABEA404E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F69797CE-7660-48A5-9F76-2C31ABEA404E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F69797CE-7660-48A5-9F76-2C31ABEA404E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F69797CE-7660-48A5-9F76-2C31ABEA404E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{72FB6B93-E21D-44C0-99FF-9293214A19C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{72FB6B93-E21D-44C0-99FF-9293214A19C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72FB6B93-E21D-44C0-99FF-9293214A19C1}.Release|Any CPU.ActiveCfg = Release|Any CPU

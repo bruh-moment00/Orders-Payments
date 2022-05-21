@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Orders_Payments_Server.Domain.Funds.Services
 {
-    class FundsService : IFundsService
+    public class FundsService : IFundsService
     {
         private readonly IFundsRepository _fundsRepository;
         public FundsService(IFundsRepository fundsRepository)

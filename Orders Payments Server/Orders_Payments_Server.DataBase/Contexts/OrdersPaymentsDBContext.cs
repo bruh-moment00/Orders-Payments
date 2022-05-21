@@ -7,7 +7,7 @@ using Orders_Payments_Server.DataBase.Payments.Models;
 
 #nullable disable
 
-namespace Orders_Payments_Server.DataBase.Context
+namespace Orders_Payments_Server.DataBase.Contexts
 {
     public partial class OrdersPaymentsDBContext : DbContext
     {

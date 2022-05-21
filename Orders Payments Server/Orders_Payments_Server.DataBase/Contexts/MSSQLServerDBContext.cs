@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Orders_Payments_Server.DataBase.Context;
-using Orders_Payments_Server.DataBase.Models;
+using Orders_Payments_Server.DataBase.Funds.Models;
+using Orders_Payments_Server.DataBase.Orders.Models;
+using Orders_Payments_Server.DataBase.Payments.Models;
 
 namespace Orders_Payments_Server.DataBase.Contexts
 {
-    class MSSQLServerDBContext : OrdersPaymentsDBContext
+    public class MSSQLServerDBContext : OrdersPaymentsDBContext
     {
         public MSSQLServerDBContext(string connectionString) : base(connectionString)
         {

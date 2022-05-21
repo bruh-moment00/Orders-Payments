@@ -1,3 +1,4 @@
+using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +13,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Orders_Payments_Server.DataBase.Contexts;
+using Orders_Payments_Server.DataBase.Funds.Repositories.Interfaces;
+using Orders_Payments_Server.DataBase.Funds.Repositories;
+using Orders_Payments_Server.DataBase.Orders.Repositories.Interfaces;
+using Orders_Payments_Server.DataBase.Orders.Repositories;
+using Orders_Payments_Server.DataBase.Payments.Repositories;
+using Orders_Payments_Server.DataBase.Payments.Repositories.Interfaces;
+using Orders_Payments_Server.Domain.Funds.Services.Interfaces;
+using Orders_Payments_Server.Domain.Funds.Services;
+using Orders_Payments_Server.Domain.Orders.Services.Interfaces;
+using Orders_Payments_Server.Domain.Orders.Services;
+using Orders_Payments_Server.Domain.Payments.Services.Interfaces;
+using Orders_Payments_Server.Domain.Payments.Services;
+
 namespace Orders_Payments_Server.API
 {
     public class Startup
@@ -21,7 +36,8 @@ namespace Orders_Payments_Server.API
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; private set; }
+        public ILifetimeScope AutofacContainer { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -32,6 +48,18 @@ namespace Orders_Payments_Server.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Orders_Payments_Server", Version = "v1" });
             });
+            services.AddOptions();
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterType<MSSQLServerDBContext>().As<OrdersPaymentsDBContext>().WithParameter("connectionString", Configuration["ConnectionStrings:OrdersPaymentsDB"]).SingleInstance();
+            builder.RegisterType<FundsRepository>().As<IFundsRepository>().SingleInstance();
+            builder.RegisterType<OrdersRepository>().As<IOrdersRepository>().SingleInstance();
+            builder.RegisterType<PaymentsRepository>().As<IPaymentsRepository>().SingleInstance();
+            builder.RegisterType<FundsService>().As<IFundsService>().SingleInstance();
+            builder.RegisterType<OrdersService>().As<IOrdersService>().SingleInstance();
+            builder.RegisterType<PaymentsService>().As<IPaymentsService>().SingleInstance();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
