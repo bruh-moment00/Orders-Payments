@@ -24,7 +24,7 @@ namespace Orders_Payments_Client.UI.Forms
         public new void Show()
         {
             _context.MainForm = this;
-            base.Show();
+            Application.Run(_context);
         }
 
         public void LoadOrdersOnGrid(IEnumerable<Order> orders)
@@ -32,9 +32,9 @@ namespace Orders_Payments_Client.UI.Forms
             ordersGrid.DataSource = orders;
         }
 
-        private void Invoke(Action action)
-        {
-            if (action != null) action();
-        }
+        //private void Invoke(Action action)
+        //{
+        //    if (action != null) action();
+        //}
     }
 }
