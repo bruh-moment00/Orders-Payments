@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Orders_Payments_Client.API.Payments.Models
+namespace Orders_Payments_Client.HttpClient.Models
 {
     public class Payments
     {

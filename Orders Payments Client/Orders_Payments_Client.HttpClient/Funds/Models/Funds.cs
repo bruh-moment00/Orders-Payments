@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Orders_Payments_Client.API.Funds.Models
+namespace Orders_Payments_Client.HttpClient.Models
 {
-    public class Fund
+    public class Funds
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
