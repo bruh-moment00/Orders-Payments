@@ -8,7 +8,7 @@ namespace Orders_Payments_Server.Domain.Orders.Models
 {
     public class OrderResponse
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public DateTime Date { get; set; }
         public double Sum { get; set; }
         public double? PaidSum { get; set; }
