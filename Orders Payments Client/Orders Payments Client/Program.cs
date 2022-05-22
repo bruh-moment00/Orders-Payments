@@ -1,3 +1,12 @@
+using Orders_Payments_Client.API.ApiClients;
+using Orders_Payments_Client.API.ApiClients.Interfaces;
+using Orders_Payments_Client.API.Orders.Models;
+using Orders_Payments_Client.API.Orders.Repositories;
+using Orders_Payments_Client.API.Orders.Repositories.Interfaces;
+using Orders_Payments_Client.Presentation.Common;
+using Orders_Payments_Client.Presentation.Presenters;
+using Orders_Payments_Client.Presentation.Views;
+using Orders_Payments_Client.UI.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +27,13 @@ namespace Orders_Payments_Client.UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(new Form1());
+            var controller = new ApplicationController(new LightInjectAdapder())
+                .RegisterView<IOrdersView, OrdersForm>()
+                .RegisterInstance<IApiClient>(new ApiClient("https://localhost:44304/api/"))
+                .RegisterService<IOrdersRepository, OrdersRepository>()
+                .RegisterInstance(new ApplicationContext());
+
+            controller.Run<OrdersPresenter>();
         }
     }
 }

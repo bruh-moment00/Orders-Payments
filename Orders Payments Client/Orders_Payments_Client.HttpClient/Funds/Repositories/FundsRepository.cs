@@ -18,8 +18,7 @@ namespace Orders_Payments_Client.API.Funds.Repositories
         }
         public IEnumerable<Fund> GetFunds()
         {
-            IEnumerable<Fund> funds = (IEnumerable<Fund>)_apiClient.Get("funds");
-            return funds;
+            return _apiClient.Get<IEnumerable<Fund>>("funds");
         }
 
         public string PostFunds(IEnumerable<Fund> newFunds)

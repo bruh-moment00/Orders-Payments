@@ -8,7 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="LightInject" Version="6.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Orders_Payments_Client.HttpClient\Orders_Payments_Client.API.csproj" />
+    <ProjectReference Include="..\Orders_Payments_Client.Presentation\Orders_Payments_Client.Presentation.csproj" />
   </ItemGroup>
 
 </Project>

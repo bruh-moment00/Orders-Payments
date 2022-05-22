@@ -49,6 +49,11 @@ namespace Orders_Payments_Server.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Orders_Payments_Server", Version = "v1" });
             });
             services.AddOptions();
+            services.AddCors(options =>
+                 options.AddPolicy("CorsPolicy", builder =>
+                 builder
+                 .AllowAnyMethod()
+                 .AllowAnyHeader()));
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -74,6 +79,7 @@ namespace Orders_Payments_Server.API
 
             app.UseHttpsRedirection();
 
+            app.UseCors("CorsPolicy");
             app.UseRouting();
 
             app.UseAuthorization();

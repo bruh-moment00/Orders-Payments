@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Orders_Payments_Client.API.Orders.Models
 {
-    public class Orders
+    public class Order
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
