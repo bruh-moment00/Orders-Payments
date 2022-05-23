@@ -1,4 +1,4 @@
-﻿using Orders_Payments_Client.API.Orders.Models;
+﻿using Orders_Payments_Client.API.Funds.Models;
 using Orders_Payments_Client.Presentation.Common;
 using System;
 using System.Collections.Generic;
@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace Orders_Payments_Client.Presentation.Views
 {
-    public interface IOrdersView : IView
+    public interface ICreatePaymentView : IView
     {
         DateTime Date { get; }
         double Sum { get; }
-        Order Order { get; }
-        event Action CreateOrder;
-        event Action OpenPayments;
-        event Action OpenPaymentCreation;
-        void LoadOrdersOnGrid(IEnumerable<Order> orders);
+        event Action CreateFund;
+        double PaymentSum { get; }
+        Fund Fund { get; }
+        event Action CreatePayment;
+        void LoadFundsOnGrid(IEnumerable<Fund> funds);
         void ShowError(string errorMessage);
     }
 }

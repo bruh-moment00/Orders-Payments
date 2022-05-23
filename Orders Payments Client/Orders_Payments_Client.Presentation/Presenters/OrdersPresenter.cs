@@ -18,6 +18,8 @@ namespace Orders_Payments_Client.Presentation.Presenters
             _ordersRepository = ordersRepository;
 
             View.CreateOrder += () => CreateOrder(View.Date, View.Sum);
+            View.OpenPayments += () => OpenPayments();
+            View.OpenPaymentCreation += () => OpenPaymentCreation(View.Order);
         }
 
         public override void Run()
@@ -43,6 +45,17 @@ namespace Orders_Payments_Client.Presentation.Presenters
             {
                 UpdateOrdersList();
             }
+        }
+
+        private void OpenPayments()
+        {
+            Controller.Run<PaymentsPresenter>();
+        }
+
+        private void OpenPaymentCreation(Order order)
+        {
+            Controller.Run<CreatePaymentPresenter, Order>(order);
+            UpdateOrdersList();
         }
 
         private void UpdateOrdersList()

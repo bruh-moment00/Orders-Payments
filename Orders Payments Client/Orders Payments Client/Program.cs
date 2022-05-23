@@ -5,6 +5,8 @@ using Orders_Payments_Client.API.Funds.Repositories.Interfaces;
 using Orders_Payments_Client.API.Orders.Models;
 using Orders_Payments_Client.API.Orders.Repositories;
 using Orders_Payments_Client.API.Orders.Repositories.Interfaces;
+using Orders_Payments_Client.API.Payments.Repositories;
+using Orders_Payments_Client.API.Payments.Repositories.Interfaces;
 using Orders_Payments_Client.Presentation.Common;
 using Orders_Payments_Client.Presentation.Presenters;
 using Orders_Payments_Client.Presentation.Views;
@@ -31,9 +33,12 @@ namespace Orders_Payments_Client.UI
 
             var controller = new ApplicationController(new LightInjectAdapder())
                 .RegisterView<IOrdersView, OrdersForm>()
+                .RegisterView<IPaymentsView, PaymentsForm>()
+                .RegisterView<ICreatePaymentView, CreatePaymentForm>()
                 .RegisterInstance<IApiClient>(new ApiClient("https://localhost:44304/api/"))
                 .RegisterService<IOrdersRepository, OrdersRepository>()
                 .RegisterService<IFundsRepository, FundsRepository>()
+                .RegisterService<IPaymentsRepository, PaymentsRepository>()
                 .RegisterInstance(new ApplicationContext());
 
             controller.Run<OrdersPresenter>();

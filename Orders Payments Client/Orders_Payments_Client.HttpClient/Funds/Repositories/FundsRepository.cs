@@ -20,20 +20,16 @@ namespace Orders_Payments_Client.API.Funds.Repositories
         }
         public IEnumerable<Fund> GetFunds()
         {
-            var funds = _apiClient.Get<IEnumerable<Fund>>("funds").ToString();
-
-            return JsonConvert.DeserializeObject<IEnumerable<Fund>>(funds);
+            return _apiClient.Get<IEnumerable<Fund>>("funds");
         }
         public Fund GetFundById(int id)
         {
-            var fund = _apiClient.Get<Fund>("funds/" + id).ToString();
-
-            return JsonConvert.DeserializeObject<Fund>(fund);
+            return _apiClient.Get<Fund>("funds/" + id);
         }
 
-        public HttpStatusCode PostFunds(IEnumerable<Fund> funds)
+        public bool PostFunds(IEnumerable<FundQuery> funds)
         {
-            return _apiClient.Post("funds", funds).StatusCode;
+            return _apiClient.Post("funds", funds).StatusCode == HttpStatusCode.OK;
         }
     }
 }

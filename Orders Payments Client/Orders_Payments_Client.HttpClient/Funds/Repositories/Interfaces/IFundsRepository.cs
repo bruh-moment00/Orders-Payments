@@ -12,6 +12,6 @@ namespace Orders_Payments_Client.API.Funds.Repositories.Interfaces
     {
         public IEnumerable<Fund> GetFunds();
         public Fund GetFundById(int id);
-        public HttpStatusCode PostFunds(IEnumerable<Fund> newFunds);
+        public bool PostFunds(IEnumerable<FundQuery> newFunds);
     }
 }

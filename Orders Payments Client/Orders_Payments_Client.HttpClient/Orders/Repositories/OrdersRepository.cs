@@ -1,4 +1,5 @@
-﻿using Orders_Payments_Client.API.ApiClients.Interfaces;
+﻿using Leaf.xNet;
+using Orders_Payments_Client.API.ApiClients.Interfaces;
 using Orders_Payments_Client.API.Orders.Models;
 using Orders_Payments_Client.API.Orders.Repositories.Interfaces;
 using System;
@@ -27,7 +28,7 @@ namespace Orders_Payments_Client.API.Orders.Repositories
 
         public bool PostOrder(IEnumerable<OrderQuery> orders)
         {
-            return _apiClient.Post("orders", orders).StatusCode == Leaf.xNet.HttpStatusCode.OK;
+            return _apiClient.Post("orders", orders).StatusCode == HttpStatusCode.OK;
         }
     }
 }
