@@ -8,16 +8,16 @@ namespace Orders_Payments_Server.DataBase.Funds.Models
 {
     public partial class FundDB
     {
-        public FundDB()
-        {
-            Payments = new HashSet<PaymentDB>();
-        }
+        //public FundDB()
+        //{
+        //    Payments = new HashSet<PaymentDB>();
+        //}
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public DateTime Date { get; set; }
         public double Sum { get; set; }
-        public double Remain { get; set; }
+        public double? Remain { get; set; }
 
-        public virtual ICollection<PaymentDB> Payments { get; set; }
+        //public virtual ICollection<PaymentDB> Payments { get; set; }
     }
 }

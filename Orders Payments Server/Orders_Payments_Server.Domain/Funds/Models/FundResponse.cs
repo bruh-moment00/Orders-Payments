@@ -8,9 +8,9 @@ namespace Orders_Payments_Server.Domain.Funds.Models
 {
     public class FundResponse
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public DateTime Date { get; set; }
         public double Sum { get; set; }
-        public double Remain { get; set; }
+        public double? Remain { get; set; }
     }
 }
