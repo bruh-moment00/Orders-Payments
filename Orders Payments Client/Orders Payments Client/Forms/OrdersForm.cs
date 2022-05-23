@@ -19,6 +19,8 @@ namespace Orders_Payments_Client.UI.Forms
         {
             _context = context;
             InitializeComponent();
+
+            addNewOrderButton.Click += (sender, args) => Invoke(CreateOrder);
         }
 
         public new void Show()
@@ -27,14 +29,24 @@ namespace Orders_Payments_Client.UI.Forms
             Application.Run(_context);
         }
 
+        public DateTime Date { get { return orderDatePicker.Value; } }
+        public double Sum { get { return Convert.ToDouble(sumNumeric.Value); } }
+
+        public event Action CreateOrder;
+        
         public void LoadOrdersOnGrid(IEnumerable<Order> orders)
         {
             ordersGrid.DataSource = orders;
         }
 
-        //private void Invoke(Action action)
-        //{
-        //    if (action != null) action();
-        //}
+        public void ShowError(string errorMessage)
+        {
+            MessageBox.Show(errorMessage, "Ошибка");
+        }
+
+        private void Invoke(Action action)
+        {
+            if (action != null) action();
+        }
     }
 }

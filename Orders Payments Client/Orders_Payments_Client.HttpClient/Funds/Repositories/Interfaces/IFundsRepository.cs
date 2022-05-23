@@ -1,4 +1,5 @@
-﻿using Orders_Payments_Client.API.Funds.Models;
+﻿using Leaf.xNet;
+using Orders_Payments_Client.API.Funds.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Orders_Payments_Client.API.Funds.Repositories.Interfaces
     public interface IFundsRepository
     {
         public IEnumerable<Fund> GetFunds();
-        public string PostFunds(IEnumerable<Fund> newFunds);
+        public Fund GetFundById(int id);
+        public HttpStatusCode PostFunds(IEnumerable<Fund> newFunds);
     }
 }

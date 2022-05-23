@@ -20,5 +20,14 @@ namespace Orders_Payments_Client.API.Orders.Repositories
         {
             return _apiClient.Get<IEnumerable<Order>>("orders");
         }
+        public Order GetOrderById(int id)
+        {
+            return _apiClient.Get<Order>("orders/" + id);
+        }
+
+        public bool PostOrder(IEnumerable<OrderQuery> orders)
+        {
+            return _apiClient.Post("orders", orders).StatusCode == Leaf.xNet.HttpStatusCode.OK;
+        }
     }
 }

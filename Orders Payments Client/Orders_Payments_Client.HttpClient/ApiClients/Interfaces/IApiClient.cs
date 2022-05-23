@@ -11,6 +11,6 @@ namespace Orders_Payments_Client.API.ApiClients.Interfaces
     public interface IApiClient
     {
         public T Get<T>(string path);
-        public HttpStatusCode Post(string path, object body);
+        public HttpResponse Post(string path, object body);
     }
 }

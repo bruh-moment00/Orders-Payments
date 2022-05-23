@@ -21,43 +21,28 @@ namespace Orders_Payments_Client.API.ApiClients
 
         public T Get<T>(string path)
         {
-            //HttpClient httpClient = new HttpClient();
-
-            //HttpRequestMessage request = new HttpRequestMessage();
-            //request.RequestUri = new Uri("https://localhost:44304/api/orders");
-            //request.Method = HttpMethod.Get;
-            //request.Headers.Add("Accept", "application/json");
-
-            //HttpResponseMessage response = httpClient.Send(request);
-
-            //string content = response.Content.ToString();
             using(var request = new HttpRequest())
             {
                 request.UserAgent = Http.ChromeUserAgent();
 
-                HttpResponse response = request.Get("https://localhost:44304/api/orders");
-                string content = response.ToString();
-                return JsonConvert.DeserializeObject<T>(content);
+                HttpResponse response = request.Get(_apiURL + path);
+                return JsonConvert.DeserializeObject<T>(response.ToString());
             }
 
             
 
         }
 
-        public HttpStatusCode Post(string path, object body)
+        public HttpResponse Post(string path, object body)
         {
-            //HttpClient httpClient = new HttpClient();
+            using (var request = new HttpRequest())
+            {
+                request.UserAgent = Http.ChromeUserAgent();
 
-            //HttpRequestMessage request = new HttpRequestMessage();
-            //request.RequestUri = new Uri(_apiURL + path);
-            //request.Method = HttpMethod.Post;
-            //request.Headers.Add("Accept", "application/json");
-            //request.Content = new StringContent(JsonConvert.SerializeObject(body));
-
-            //HttpResponseMessage response = httpClient.Send(request);
-
-            //return response.StatusCode;
-            return HttpStatusCode.OK;
+                string stringContent = JsonConvert.SerializeObject(body);
+                HttpResponse response = request.Post(_apiURL + path, stringContent, "application/json");
+                return response;
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
 using Orders_Payments_Client.API.ApiClients;
 using Orders_Payments_Client.API.ApiClients.Interfaces;
+using Orders_Payments_Client.API.Funds.Repositories;
+using Orders_Payments_Client.API.Funds.Repositories.Interfaces;
 using Orders_Payments_Client.API.Orders.Models;
 using Orders_Payments_Client.API.Orders.Repositories;
 using Orders_Payments_Client.API.Orders.Repositories.Interfaces;
@@ -31,6 +33,7 @@ namespace Orders_Payments_Client.UI
                 .RegisterView<IOrdersView, OrdersForm>()
                 .RegisterInstance<IApiClient>(new ApiClient("https://localhost:44304/api/"))
                 .RegisterService<IOrdersRepository, OrdersRepository>()
+                .RegisterService<IFundsRepository, FundsRepository>()
                 .RegisterInstance(new ApplicationContext());
 
             controller.Run<OrdersPresenter>();

@@ -13,16 +13,36 @@ namespace Orders_Payments_Client.Presentation.Presenters
     public class OrdersPresenter : BasePresenter<IOrdersView>
     {
         private readonly IOrdersRepository _ordersRepository;
-        private IEnumerable<Order> _orders;
         public OrdersPresenter(IApplicationController controller, IOrdersView view, IOrdersRepository ordersRepository) : base(controller, view)
         {
             _ordersRepository = ordersRepository;
+
+            View.CreateOrder += () => CreateOrder(View.Date, View.Sum);
         }
 
         public override void Run()
         {
             UpdateOrdersList();
             View.Show();
+        }
+
+        private void CreateOrder(DateTime date, double sum)
+        {
+            var orderQuery = new OrderQuery
+            {
+                Date = date,
+                Sum = sum
+            };
+
+            IEnumerable<OrderQuery> orders = new List<OrderQuery> { orderQuery };
+            if (!_ordersRepository.PostOrder(orders))
+            {
+                View.ShowError("Ошибка создания заказа");
+            }
+            else
+            {
+                UpdateOrdersList();
+            }
         }
 
         private void UpdateOrdersList()

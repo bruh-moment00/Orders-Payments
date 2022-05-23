@@ -1,4 +1,6 @@
-﻿using Orders_Payments_Client.API.ApiClients.Interfaces;
+﻿using Leaf.xNet;
+using Newtonsoft.Json;
+using Orders_Payments_Client.API.ApiClients.Interfaces;
 using Orders_Payments_Client.API.Funds.Models;
 using Orders_Payments_Client.API.Funds.Repositories.Interfaces;
 using System;
@@ -18,12 +20,20 @@ namespace Orders_Payments_Client.API.Funds.Repositories
         }
         public IEnumerable<Fund> GetFunds()
         {
-            return _apiClient.Get<IEnumerable<Fund>>("funds");
+            var funds = _apiClient.Get<IEnumerable<Fund>>("funds").ToString();
+
+            return JsonConvert.DeserializeObject<IEnumerable<Fund>>(funds);
+        }
+        public Fund GetFundById(int id)
+        {
+            var fund = _apiClient.Get<Fund>("funds/" + id).ToString();
+
+            return JsonConvert.DeserializeObject<Fund>(fund);
         }
 
-        public string PostFunds(IEnumerable<Fund> newFunds)
+        public HttpStatusCode PostFunds(IEnumerable<Fund> funds)
         {
-            throw new NotImplementedException();
+            return _apiClient.Post("funds", funds).StatusCode;
         }
     }
 }

@@ -10,6 +10,10 @@ namespace Orders_Payments_Client.Presentation.Views
 {
     public interface IOrdersView : IView
     {
+        DateTime Date { get; }
+        double Sum { get; }
+        event Action CreateOrder;
         void LoadOrdersOnGrid(IEnumerable<Order> orders);
+        void ShowError(string errorMessage);
     }
 }
