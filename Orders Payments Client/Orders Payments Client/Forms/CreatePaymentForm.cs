@@ -1,4 +1,5 @@
 ﻿using Orders_Payments_Client.API.Funds.Models;
+using Orders_Payments_Client.API.Orders.Models;
 using Orders_Payments_Client.Presentation.Views;
 using System;
 using System.Collections.Generic;
@@ -50,14 +51,39 @@ namespace Orders_Payments_Client.UI.Forms
             fundsGrid.DataSource = funds;
         }
 
+        public void DisplayCurrentOrder(Order order)
+        {
+            orderDateText.Text = order.Date.ToString();
+            orderSumText.Text = order.Sum.ToString();
+            orderPaidSumText.Text = order.PaidSum.ToString();
+        }
+
         public void ShowError(string errorMessage)
         {
             MessageBox.Show(errorMessage, "Ошибка");
+        }
+        public bool DisplayDataChangedWarning()
+        {
+            DialogResult dialogResult = MessageBox.Show("Выбранные данные были изменены в базе данных другим пользователем\nВсё равно добавить оплату?\n (Да - принудительно добавить оплату , Нет - обновить данные", "Внимание!", MessageBoxButtons.YesNo);
+
+            return dialogResult == DialogResult.Yes;
+        }
+
+        public void ShowSuccess(string message)
+        {
+            MessageBox.Show(message, "Успех");
         }
 
         private void Invoke(Action action)
         {
             if (action != null) action();
         }
+
+        private void orderDateText_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        
     }
 }

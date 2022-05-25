@@ -1,4 +1,5 @@
-﻿using Orders_Payments_Server.DataBase.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using Orders_Payments_Server.DataBase.Contexts;
 using Orders_Payments_Server.DataBase.Orders.Models;
 using Orders_Payments_Server.DataBase.Orders.Repositories.Interfaces;
 using System;
@@ -18,7 +19,7 @@ namespace Orders_Payments_Server.DataBase.Orders.Repositories
         }
         public List<OrderDB> GetOrdersFromDB()
         {
-            return _context.Orders.ToList();
+            return _context.Orders.AsNoTracking().ToList();
         }
         public OrderDB GetOrderByIDFromDB(int id)
         {

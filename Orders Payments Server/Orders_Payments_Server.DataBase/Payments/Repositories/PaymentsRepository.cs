@@ -1,4 +1,7 @@
-﻿using Orders_Payments_Server.DataBase.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using Orders_Payments_Server.DataBase.Contexts;
+using Orders_Payments_Server.DataBase.Funds.Models;
+using Orders_Payments_Server.DataBase.Orders.Models;
 using Orders_Payments_Server.DataBase.Payments.Models;
 using Orders_Payments_Server.DataBase.Payments.Repositories.Interfaces;
 using System;
@@ -18,13 +21,14 @@ namespace Orders_Payments_Server.DataBase.Payments.Repositories
         }
         public List<PaymentDB> GetPaymentsFromDB()
         {
-            return _context.Payments.ToList();
+            return _context.Payments.AsNoTracking().ToList();
         }
 
         public void SaveNewPayments(PaymentDB paymentDB)
         {
             _context.Payments.Add(paymentDB);
             _context.SaveChanges();
+
         }
     }
 }

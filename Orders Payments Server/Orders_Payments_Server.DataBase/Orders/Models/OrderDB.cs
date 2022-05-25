@@ -13,6 +13,6 @@ namespace Orders_Payments_Server.DataBase.Orders.Models
         public int? Id { get; set; }
         public DateTime Date { get; set; }
         public double Sum { get; set; }
-        public double? PaidSum { get; set; }
+        public double PaidSum { get; set; }
     }
 }

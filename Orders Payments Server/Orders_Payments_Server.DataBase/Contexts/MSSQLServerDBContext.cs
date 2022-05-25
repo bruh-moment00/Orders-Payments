@@ -24,15 +24,5 @@ namespace Orders_Payments_Server.DataBase.Contexts
                 optionsBuilder.UseSqlServer(ConnectionString);
             }
         }
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.HasAnnotation("Relational:Collation", "Cyrillic_General_CI_AS");
-
-        //    modelBuilder.Entity<OrderDB>()
-        //        .Property(o => o.Id)
-        //        .ValueGeneratedOnAdd();
-        //}
-
     }
 }

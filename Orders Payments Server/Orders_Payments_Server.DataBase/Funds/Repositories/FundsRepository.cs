@@ -1,4 +1,5 @@
-﻿using Orders_Payments_Server.DataBase.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using Orders_Payments_Server.DataBase.Contexts;
 using Orders_Payments_Server.DataBase.Funds.Models;
 using Orders_Payments_Server.DataBase.Funds.Repositories.Interfaces;
 using System;
@@ -19,7 +20,7 @@ namespace Orders_Payments_Server.DataBase.Funds.Repositories
 
         public List<FundDB> GetFundsFromDB()
         {
-            return _context.Funds.ToList();
+            return _context.Funds.AsNoTracking().ToList();
         }
 
         public FundDB GetFundByIDFromDB(int id)
