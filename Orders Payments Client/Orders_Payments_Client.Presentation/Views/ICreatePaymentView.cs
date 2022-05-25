@@ -1,4 +1,5 @@
 ﻿using Orders_Payments_Client.API.Funds.Models;
+using Orders_Payments_Client.API.Orders.Models;
 using Orders_Payments_Client.Presentation.Common;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,10 @@ namespace Orders_Payments_Client.Presentation.Views
         Fund Fund { get; }
         event Action CreatePayment;
         void LoadFundsOnGrid(IEnumerable<Fund> funds);
+        void DisplayCurrentOrder(Order order);
         void ShowError(string errorMessage);
+        void ShowSuccess(string message);
+        bool DisplayDataChangedWarning();
+        
     }
 }

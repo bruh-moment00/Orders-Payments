@@ -1,6 +1,7 @@
 ﻿using Orders_Payments_Client.API.Funds.Models;
 using Orders_Payments_Client.API.Funds.Repositories.Interfaces;
 using Orders_Payments_Client.API.Orders.Models;
+using Orders_Payments_Client.API.Orders.Repositories.Interfaces;
 using Orders_Payments_Client.API.Payments.Models;
 using Orders_Payments_Client.API.Payments.Repositories.Interfaces;
 using Orders_Payments_Client.Presentation.Common;
@@ -17,20 +18,31 @@ namespace Orders_Payments_Client.Presentation.Presenters
     {
         private readonly IPaymentsRepository _paymentsRepository;
         private readonly IFundsRepository _fundsRepository;
+        private readonly IOrdersRepository _ordersRepository;
 
         private Order _order;
-        public CreatePaymentPresenter(IApplicationController controller, ICreatePaymentView view, IPaymentsRepository paymentsRepository, IFundsRepository fundsRepository) : base(controller, view)
+        public CreatePaymentPresenter(
+
+            IApplicationController controller, 
+            ICreatePaymentView view, 
+            IPaymentsRepository paymentsRepository, 
+            IFundsRepository fundsRepository, 
+            IOrdersRepository ordersRepository) 
+            : base(controller, view)
+
         {
             _paymentsRepository = paymentsRepository;
             _fundsRepository = fundsRepository;
+            _ordersRepository = ordersRepository;
 
             View.CreateFund += () => CreateFund(View.Date, View.Sum);
-            View.CreatePayment += () => CreatePayment(_order.Id, View.Fund.Id, View.PaymentSum);
+            View.CreatePayment += () => CheckDataAndCreatePayment(_order, View.Fund, View.PaymentSum);
         }
         public override void Run(Order argument)
         {
             _order = argument;
             UpdateFundsList();
+            UpdateCurrentOrder();
             View.Show();
         }
         private void CreateFund(DateTime date, double sum)
@@ -51,13 +63,45 @@ namespace Orders_Payments_Client.Presentation.Presenters
                 UpdateFundsList();
             }
         }
-        private void CreatePayment(int orderId, int fundId, double sum)
+        private void CheckDataAndCreatePayment(Order order, Fund fund, double sum)
+        {
+            if(IsDataRelevant(order, fund))
+            {
+                CreatePayment(order.Id, fund.Id, sum);
+            }
+            else
+            {
+                if (View.DisplayDataChangedWarning())
+                {
+                    CreatePayment(order.Id, fund.Id, sum);
+                }
+            }
+            UpdateFundsList();
+            UpdateCurrentOrder();
+        }
+        private void UpdateFundsList()
+        {
+            View.LoadFundsOnGrid(_fundsRepository.GetFunds());
+        }
+
+        private void UpdateCurrentOrder()
+        {
+            _order = _ordersRepository.GetOrderById(_order.Id);
+            View.DisplayCurrentOrder(_order);
+        }
+
+        private bool IsDataRelevant(Order order, Fund fund)
+        {
+            return order.PaidSum == _ordersRepository.GetOrderById(order.Id).PaidSum && fund.Remain == _fundsRepository.GetFundById(fund.Id).Remain;
+        }
+
+        private void CreatePayment(int orderId, int fundId, double paymentSum)
         {
             var paymentQuery = new PaymentQuery
             {
                 OrderId = orderId,
                 FundId = fundId,
-                PaymentSum = sum
+                PaymentSum = paymentSum
             };
 
             if (!_paymentsRepository.PostPayment(paymentQuery))
@@ -66,12 +110,8 @@ namespace Orders_Payments_Client.Presentation.Presenters
             }
             else
             {
-                UpdateFundsList();
+                View.ShowSuccess("Оплата привязана успешно");
             }
-        }
-        private void UpdateFundsList()
-        {
-            View.LoadFundsOnGrid(_fundsRepository.GetFunds());
         }
     }
 }

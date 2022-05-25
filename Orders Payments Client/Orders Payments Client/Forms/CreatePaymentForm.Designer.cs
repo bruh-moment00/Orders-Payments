@@ -39,6 +39,13 @@ namespace Orders_Payments_Client.UI.Forms
             this.label3 = new System.Windows.Forms.Label();
             this.paymentSumNumeric = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.orderDateText = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.orderSumText = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.orderPaidSumText = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.sumNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fundsGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentSumNumeric)).BeginInit();
@@ -47,7 +54,7 @@ namespace Orders_Payments_Client.UI.Forms
             // createPaymentButton
             // 
             this.createPaymentButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.createPaymentButton.Location = new System.Drawing.Point(582, 77);
+            this.createPaymentButton.Location = new System.Drawing.Point(582, 233);
             this.createPaymentButton.Name = "createPaymentButton";
             this.createPaymentButton.Size = new System.Drawing.Size(167, 23);
             this.createPaymentButton.TabIndex = 11;
@@ -129,7 +136,7 @@ namespace Orders_Payments_Client.UI.Forms
             // paymentSumNumeric
             // 
             this.paymentSumNumeric.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.paymentSumNumeric.Location = new System.Drawing.Point(582, 48);
+            this.paymentSumNumeric.Location = new System.Drawing.Point(582, 204);
             this.paymentSumNumeric.Name = "paymentSumNumeric";
             this.paymentSumNumeric.Size = new System.Drawing.Size(167, 23);
             this.paymentSumNumeric.TabIndex = 15;
@@ -138,17 +145,85 @@ namespace Orders_Payments_Client.UI.Forms
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(582, 30);
+            this.label4.Location = new System.Drawing.Point(582, 186);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 15);
+            this.label4.Size = new System.Drawing.Size(110, 15);
             this.label4.TabIndex = 16;
-            this.label4.Text = "Сколько списать:";
+            this.label4.Text = "Сколько оплатить:";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(582, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(152, 15);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Данные о текущем заказе:";
+            // 
+            // orderDateText
+            // 
+            this.orderDateText.Location = new System.Drawing.Point(582, 48);
+            this.orderDateText.Name = "orderDateText";
+            this.orderDateText.Size = new System.Drawing.Size(167, 23);
+            this.orderDateText.TabIndex = 18;
+            this.orderDateText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.orderDateText_KeyPress);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(582, 30);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(35, 15);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Дата:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(582, 74);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(85, 15);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Сумма заказа:";
+            // 
+            // orderSumText
+            // 
+            this.orderSumText.Location = new System.Drawing.Point(582, 92);
+            this.orderSumText.Name = "orderSumText";
+            this.orderSumText.Size = new System.Drawing.Size(167, 23);
+            this.orderSumText.TabIndex = 21;
+            this.orderSumText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.orderDateText_KeyPress);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(582, 118);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(117, 15);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Оплаченная сумма:";
+            // 
+            // orderPaidSumText
+            // 
+            this.orderPaidSumText.Location = new System.Drawing.Point(582, 136);
+            this.orderPaidSumText.Name = "orderPaidSumText";
+            this.orderPaidSumText.Size = new System.Drawing.Size(167, 23);
+            this.orderPaidSumText.TabIndex = 23;
+            this.orderPaidSumText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.orderDateText_KeyPress);
             // 
             // CreatePaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 484);
+            this.Controls.Add(this.orderPaidSumText);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.orderSumText);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.orderDateText);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.paymentSumNumeric);
             this.Controls.Add(this.label3);
@@ -180,5 +255,12 @@ namespace Orders_Payments_Client.UI.Forms
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown paymentSumNumeric;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox orderDateText;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox orderSumText;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox orderPaidSumText;
     }
 }
